@@ -157,4 +157,34 @@ class UsersControlador
             );
         }
     }
+    static public function ctrLoginAppUser($user)
+    {
+        $usuario = trim($user["usr_id"]);
+        $password = crypt($user["usr_clave"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+        $usr = UsersModel::mdlLoginUsers($usuario);
+        if (!$usr) {
+            return array(
+                'status' => false,
+                'message' => 'Usuario o contraseña incorrectos, intenta de nuevo'
+            );
+        }
+        if ($usr["usr_password"] == $password) {
+            if ($usr["usr_status"] == 1) {
+                return array(
+                    'status' => true,
+                    'usr' => $usr,
+                );
+            } else {
+                return array(
+                    "status" => false,
+                    'message' => 'Tu usuario fue desactivado por los administradores del negocio'
+                );
+            }
+        } else {
+            return array(
+                "status" => false,
+                'message' => 'Usuario o contraseña incorrecto, intente de nuevo'
+            );
+        }
+    }
 }
