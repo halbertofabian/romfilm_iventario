@@ -115,8 +115,25 @@ class InventoryController
             );
         }
     }
-    public function ctrActualizarInventory()
+    public static function ctrActualizarInventory($data)
     {
+        $contSubir = 0;
+
+        foreach ($data as $mca) {
+
+            // Guardar en base de datos contratos
+
+            $subir = InventoryModel::mdlUpdateCommodity($mca['mca_id '], $mca['mca_existencia_fisica']);
+
+            if ($subir) {
+                $contSubir++;
+            }
+        }
+
+        return  array(
+            'status' => true,
+            'mensaje' => $contSubir . ' productos se actualizarón'
+        );
     }
     public function ctrMostrarInventory()
     {

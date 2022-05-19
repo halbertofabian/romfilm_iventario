@@ -41,12 +41,25 @@ $app->post('/loginAppRomfilm', function (Request $request, Response $response) {
 
 });
 
-$app->get('/sincronizar_mercancia/{ivt_id}', function (Request $request, Response $response, array $args) {
+$app->get('/obtener_mercancia/{ivt_id}', function (Request $request, Response $response, array $args) {
     $ivt_id =  $args['ivt_id'];
 
     $inventary = InventoryModel::mdlGetCommodityById($ivt_id);
 
     return json_encode($inventary, true);
+});
+
+$app->post('/sincronizar_mercancia', function (Request $request, Response $response) {
+    $json = $request->getBody();
+
+    $mercancia = json_decode($json, true);
+
+    $subirMerca = InventoryController::ctrActualizarInventory($mercancia);
+
+    return json_encode($subirMerca, true);
+
+    # code...
+
 });
 
 

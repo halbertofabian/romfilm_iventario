@@ -76,6 +76,24 @@ class InventoryModel
             $con = null;
         }
     }
+    public static function mdlUpdateCommodity($mca_id, $mca_existencia_fisica)
+    {
+        try {
+            //code...
+            $sql = "UPDATE tbl_mercancia_mca SET mca_existencia_fisica = ? WHERE mca_id =?";
+            $con = ConexionSoftmor::conectar();
+            $pps = $con->prepare($sql);
+            $pps->bindValue(1, $mca_existencia_fisica);
+            $pps->bindValue(2, $mca_id);
+            $pps->execute();
+            return $pps->rowCount() > 0;
+        } catch (PDOException $th) {
+            //throw $th;
+        } finally {
+            $pps = null;
+            $con = null;
+        }
+    }
     public static function mdlUpdateInventory($mca)
     {
         try {
