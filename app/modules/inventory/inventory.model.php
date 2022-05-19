@@ -154,6 +154,23 @@ class InventoryModel
             $con = null;
         }
     }
+    public static function mdlGetCommodityById($ivt_id)
+    {
+        try {
+            //code...
+            $sql = "SELECT * FROM tbl_mercancia_mca WHERE mca_inventario = ?";
+            $con = ConexionSoftmor::conectar();
+            $pps = $con->prepare($sql);
+            $pps->bindValue(1, $ivt_id);
+            $pps->execute();
+            return $pps->fetchAll();
+        } catch (PDOException $th) {
+            //throw $th;
+        } finally {
+            $pps = null;
+            $con = null;
+        }
+    }
     public static function mdlEliminarInventory()
     {
         try {

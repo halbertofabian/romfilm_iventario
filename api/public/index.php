@@ -7,10 +7,12 @@ require_once '../../config.php';
 require '../vendor/autoload.php';
 require '../src/config/db.php';
 
-// Requerir controlador y modelo de contratos 
 
-
+require_once '../../app/modules/users/users.controller.php';
 require_once '../../app/modules/users/users.model.php';
+
+require_once '../../app/modules/inventory/inventory.controller.php';
+require_once '../../app/modules/inventory/inventory.model.php';
 
 
 
@@ -38,6 +40,15 @@ $app->post('/loginAppRomfilm', function (Request $request, Response $response) {
     # code...
 
 });
+
+$app->get('/sincronizar_mercancia/{ivt_id}', function (Request $request, Response $response, array $args) {
+    $ivt_id =  $args['ivt_id'];
+
+    $inventary = InventoryModel::mdlGetCommodityById($ivt_id);
+
+    return json_encode($inventary, true);
+});
+
 
 
 
