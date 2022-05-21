@@ -80,7 +80,7 @@ class InventoryModel
     {
         try {
             //code...
-            $sql = "UPDATE tbl_mercancia_mca SET mca_existencia_fisica = ? WHERE mca_id =?";
+            $sql = "UPDATE tbl_mercancia_mca SET mca_existencia_fisica = ? WHERE mca_id = ?";
             $con = ConexionSoftmor::conectar();
             $pps = $con->prepare($sql);
             $pps->bindValue(1, $mca_existencia_fisica);

@@ -119,11 +119,13 @@ class InventoryController
     {
         $contSubir = 0;
 
-        foreach ($data as $mca) {
+        // $datos = json_decode(json_encode($data, true), true);
 
-            // Guardar en base de datos contratos
+        // return $datos;
 
-            $subir = InventoryModel::mdlUpdateCommodity($mca['mca_id '], $mca['mca_existencia_fisica']);
+        foreach ($data as $key => $mca) {
+
+            $subir = InventoryModel::mdlUpdateCommodity($mca['mca_id'], $mca['mca_existencia_fisica']);
 
             if ($subir) {
                 $contSubir++;
