@@ -9,7 +9,7 @@
                 <tr class="text-center">
                     <th>CODIGO</th>
                     <th>DESCRIPCION</th>
-                    <th>ESXISTENCIA</th>
+                    <th>EXISTENCIA</th>
                     <th>EXISTENCIA FISICA</th>
                     <th>CATEGORIA</th>
                     <th>ALMACEN</th>
@@ -24,7 +24,7 @@
                 $products = InventoryModel::mdlGetAllInventory();
                 foreach ($products as $product) :
                 ?>
-                    <tr class="text-center">>
+                    <tr class="text-center">
                         <td><?= $product['mca_codigo'] ?></td>
                         <td><?= $product['mca_descripcion'] ?></td>
                         <td><?= $product['mca_existencia'] ?></td>
